@@ -2,7 +2,7 @@
 
 Service Catalog with Terraform:
 
-<img src="products.png" />
+<img src="service-catalog.png" />
 
 Create the infrastructure:
 
