@@ -18,20 +18,6 @@ resource "aws_s3_bucket" "main" {
   bucket = "${local.project_name}-${local.region}-epomatti"
 }
 
-# resource "aws_s3_bucket_acl" "main" {
-#   bucket = aws_s3_bucket.main.id
-#   acl    = "private"
-# }
-
-# resource "aws_s3_bucket_public_access_block" "main" {
-#   bucket = aws_s3_bucket.main.id
-
-#   block_public_acls       = true
-#   block_public_policy     = true
-#   ignore_public_acls      = true
-#   restrict_public_buckets = true
-# }
-
 resource "aws_s3_object" "template" {
   bucket = aws_s3_bucket.main.id
   key    = "cfn-template.json"
@@ -41,10 +27,16 @@ resource "aws_s3_object" "template" {
 
 ### Product ###
 
+resource "aws_servicecatalog_portfolio" "portfolio" {
+  name          = "My App Portfolio w/ Terraform"
+  description   = "List of my organizations apps created with Terraform"
+  provider_name = "Pomatti"
+}
+
 resource "aws_servicecatalog_product" "main" {
   name        = "MyProduct"
   owner       = "Evandro Pomatti"
-  distributor = "Evandro Pomatti"
+  distributor = "Pomatti"
   description = "This will create an awsome product."
 
   type = "CLOUD_FORMATION_TEMPLATE"
@@ -56,6 +48,10 @@ resource "aws_servicecatalog_product" "main" {
   }
 }
 
+resource "aws_servicecatalog_product_portfolio_association" "myproduct" {
+  portfolio_id = aws_servicecatalog_portfolio.portfolio.id
+  product_id   = aws_servicecatalog_product.main.id
+}
 
 ### Output ###
 
