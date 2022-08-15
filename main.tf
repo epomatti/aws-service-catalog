@@ -135,7 +135,14 @@ resource "aws_iam_user_group_membership" "user1" {
   ]
 }
 
-### Output ###
+# Add user to portfolio
+
+resource "aws_servicecatalog_principal_portfolio_association" "user1" {
+  portfolio_id  = aws_servicecatalog_portfolio.portfolio.id
+  principal_arn = aws_iam_user.user1.arn
+}
+
+### Outputs ###
 
 output "account" {
   value = local.account_id
