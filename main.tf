@@ -137,8 +137,12 @@ resource "aws_iam_user_group_membership" "user1" {
 
 ### Output ###
 
-output "bucket" {
-  value = aws_s3_bucket.main.bucket_domain_name
+output "account" {
+  value = local.account_id
+}
+
+output "user" {
+  value = aws_iam_user.user1.name
 }
 
 output "password" {
