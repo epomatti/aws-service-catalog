@@ -1,5 +1,9 @@
 # aws-service-catalog
 
+Service Catalog with Terraform:
+
+<img src="products.png" />
+
 Create the infrastructure:
 
 ```sh
