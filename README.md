@@ -1,4 +1,4 @@
-# aws-service-catalog
+# AWS Service Catalog
 
 Service Catalog with Terraform:
 
