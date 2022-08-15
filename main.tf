@@ -34,10 +34,10 @@ resource "aws_servicecatalog_portfolio" "portfolio" {
 }
 
 resource "aws_servicecatalog_product" "main" {
-  name        = "MyProduct"
+  name        = "Linux Desktop"
   owner       = "Evandro Pomatti"
   distributor = "Pomatti"
-  description = "This will create an awsome product."
+  description = "This will create a Linux Desktop"
 
   type = "CLOUD_FORMATION_TEMPLATE"
 
@@ -133,6 +133,14 @@ resource "aws_iam_user_group_membership" "user1" {
   groups = [
     aws_iam_group.group1.name
   ]
+}
+
+### Key Pair ###
+
+# This will be informed when launching the product
+resource "aws_key_pair" "deployer" {
+  key_name   = "LinuxDesktopKeyPair"
+  public_key = file("${path.module}/id_rsa.pub")
 }
 
 # Add user to portfolio
