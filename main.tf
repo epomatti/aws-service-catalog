@@ -104,8 +104,43 @@ resource "aws_servicecatalog_constraint" "launch" {
   })
 }
 
+### User Access ###
+
+resource "aws_iam_group" "group1" {
+  name = "Group1"
+  path = "/terraform/"
+}
+
+resource "aws_iam_group_policy_attachment" "group1" {
+  group      = aws_iam_group.group1.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSServiceCatalogEndUserFullAccess"
+}
+
+resource "aws_iam_user" "user1" {
+  name          = "User1"
+  path          = "/terraform/"
+  force_destroy = true
+}
+
+resource "aws_iam_user_login_profile" "user1" {
+  user                    = aws_iam_user.user1.name
+  password_reset_required = false
+}
+
+resource "aws_iam_user_group_membership" "user1" {
+  user = aws_iam_user.user1.name
+
+  groups = [
+    aws_iam_group.group1.name
+  ]
+}
+
 ### Output ###
 
 output "bucket" {
   value = aws_s3_bucket.main.bucket_domain_name
+}
+
+output "password" {
+  value = aws_iam_user_login_profile.user1.password
 }
