@@ -4,14 +4,17 @@ Service Catalog with Terraform:
 
 <img src="service-catalog.png" />
 
+```sh
+mkdir keys
+ssh-keygen -f keys/tmp_key
+```
+
 Create the infrastructure:
 
 ```sh
 terraform init
 terraform apply -auto-approve
 ```
-
-TF will output the user information for login.
 
 Enter the console with the End-User credentials and you should be able to deploy a product using Service Catalog.
 
