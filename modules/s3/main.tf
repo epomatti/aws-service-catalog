@@ -12,7 +12,8 @@ resource "random_string" "random" {
 }
 
 resource "aws_s3_bucket" "default" {
-  bucket = "bucket-${var.product_name}-${random_string.random.result}"
+  bucket        = "bucket-${var.product_name}-${random_string.random.result}"
+  force_destroy = true
 }
 
 resource "aws_s3_object" "default" {
