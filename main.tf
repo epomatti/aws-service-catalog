@@ -1,14 +1,20 @@
-provider "aws" {
-  region = local.region
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.19.0"
+    }
+  }
 }
 
-### Locals ###
+provider "aws" {
+  region = var.aws_region
+}
 
 data "aws_caller_identity" "current" {}
 
 locals {
   account_id   = data.aws_caller_identity.current.account_id
-  region       = "sa-east-1"
   project_name = "awsome-product"
 }
 
