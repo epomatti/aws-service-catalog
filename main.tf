@@ -34,5 +34,5 @@ module "service_catalog" {
 # This will be informed when launching the product
 resource "aws_key_pair" "deployer" {
   key_name   = "ServiceCatalogLinuxDesktopKeyPair"
-  public_key = file("${path.module}/tmp_key.pub")
+  public_key = file("${path.module}/keys/tmp_key.pub")
 }

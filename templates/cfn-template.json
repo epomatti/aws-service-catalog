@@ -1,6 +1,5 @@
 {
-    "AWSTemplateFormatVersion" : "2010-09-09",
-  
+    "AWSTemplateFormatVersion" : "2010-09-09",  
     "Description" : "Creates an EC2 instance.",
   
     "Parameters" : {
@@ -12,9 +11,8 @@
       "InstanceType" : {
         "Description" : "EC2 instance type.",
         "Type" : "String",
-        "Default" : "t2.micro",
-        "AllowedValues" : [ "t2.micro", "t2.small", "t2.medium", "m3.medium", "m3.large", 
-          "m3.xlarge", "m3.2xlarge", "t4g.nano", "t4g.micro", "t4g.medium" ]
+        "Default" : "t4g.nano",
+        "AllowedValues" : [ "t4g.nano", "t4g.micro", "t4g.small", "t4g.medium" ]
       },
   
       "SSHLocation" : {
@@ -47,18 +45,9 @@
   
     "Mappings" : {
       "AWSRegionArch2AMI" : {
-        "us-east-1"      : { "HVM64" : "ami-08842d60" },
-        "us-west-2"      : { "HVM64" : "ami-8786c6b7" },
-        "us-west-1"      : { "HVM64" : "ami-cfa8a18a" },
-        "eu-west-1"      : { "HVM64" : "ami-748e2903" },
-        "ap-southeast-1" : { "HVM64" : "ami-d6e1c584" },
-        "ap-northeast-1" : { "HVM64" : "ami-35072834" },
-        "ap-southeast-2" : { "HVM64" : "ami-fd4724c7" },
-        "sa-east-1"      : { "HVM64" : "ami-956cc688" },
-        "cn-north-1"     : { "HVM64" : "ami-ac57c595" },
-        "eu-central-1"   : { "HVM64" : "ami-b43503a9" }
-      }
-  
+        "us-east-1" : { "HVM64" : "ami-0a0c8eebcdd6dcbd0" },
+        "us-east-2" : { "HVM64" : "ami-08fdd91d87f63bb09" }
+      }  
     },
   
     "Resources" : {
